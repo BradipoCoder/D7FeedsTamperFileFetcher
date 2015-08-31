@@ -1,0 +1,16 @@
+{
+    "name": "jack/ftff",
+    "description": "File Fetcher plugin for Feeds Tamper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Jakab",
+            "email": "adam.jakab@mekit.it"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-0": {"Mekit\\": "src/"}
+    }
+}

@@ -1,0 +1,6 @@
+name = Feeds Tamper File Fetcher
+description = Provides Feeds Tamper plugin for file based data fetching
+core = 7.x
+package = Feeds
+dependencies[] = feeds_tamper
+
