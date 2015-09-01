@@ -103,10 +103,21 @@ class FileFetcher {
       }
     }
 
+    if(!count($files)) {
+      //Create file resource in the language specific folder
+      if (isset($this->pluginSettings["create_missing_resource_with_extension"])
+          && $this->pluginSettings["create_missing_resource_with_extension"]
+      ) {
+        $extension = $this->pluginSettings["create_missing_resource_with_extension"];
+        $sourceLanguageKey = $this->pluginSettings["source_language_key"];
+        $sourceLanguage = isset($currentItem[$sourceLanguageKey])
+                          && $currentItem[$sourceLanguageKey] ? $currentItem[$sourceLanguageKey] : NULL;
+        $this->fileLister->generateEmptyFile($this->pluginSettings["path"], $sourceLanguage, $currentItem[$fileIdentifier], $extension);
+      }
+    }
+
     //dsm("FileFetcher RUN[FILES][$this->pluginElementKey]: " . json_encode($files));
     //dsm("FileFetcher RUN[$this->pluginElementKey]: " . $this->pluginSettings["path"]);
-
-
     $data = $this->readerEnumerator->elaborateFiles($files, $this->pluginSettings);
 
     //dpm($data, "DATA");

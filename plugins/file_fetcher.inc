@@ -97,6 +97,21 @@ function feeds_tamper_plugin_file_fetcher_form($importer, $element_key, $setting
     ),
   );
 
+  $form['create_missing_resource_with_extension'] = array(
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['create_missing_resource_with_extension'])
+      ? $settings['create_missing_resource_with_extension']
+      : '',
+    '#size' => 16,
+    '#title' => t('Create missing resource extension'),
+    '#description' => t(
+      'By setting the extension here (like: txt) if no files are found for this column, an empty file will be created.'
+      . '<br />If not set no files will be created'
+    ),
+  );
+
+
+
   // Allow Readers to add their own stuff here
   $fileFetcher = _feeds_tamper_plugin_file_fetcher_get_class();
   $readerEnumerator = $fileFetcher->getReaderEnumerator();

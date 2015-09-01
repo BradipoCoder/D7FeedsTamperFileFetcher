@@ -14,6 +14,35 @@ class FileLister {
 
   /**
    * @param string $path
+   * @param string $language
+   * @param string $identifier
+   * @param string $extension
+   */
+  public function generateEmptyFile($path, $language, $identifier, $extension) {
+    $realPath = drupal_realpath($path);
+    if(!file_exists($realPath)) {
+      return;
+    }
+
+    if($language) {
+      $realPath = $realPath . '/' . $language;
+      if(!file_exists($realPath)) {
+        mkdir($realPath);
+        $realPath = drupal_realpath($realPath);
+        if(!file_exists($realPath)) {
+          return;
+        }
+      }
+    }
+
+    $fullFilePath = $realPath . '/' . strtolower($identifier) . '.' . strtolower($extension);
+    if(!file_exists($fullFilePath)) {
+      touch($fullFilePath);
+    }
+  }
+
+  /**
+   * @param string $path
    * @param string $identifier
    * @return array
    */
